@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('./partials/header.ejs')  %>
+<body>
+    <%- include('./partials/nav.ejs')  %>
+    
+    <div class="details content">
+        <h2><%= recipe.title %></h2>
+        <div class="content">
+        <p class="snippet"> <%= recipe.ingredients %> </p>
+        <p class="snippet"> <%= recipe.timeToPrepare %> </p>
+        <p class="snippet"> <%= recipe.listOfSteps %> </p>
+    </div>
+    <a class="delete" data-doc="<%= recipe._id %>">Delete</a>
+
+</div>
+<%- include('./partials/footer.ejs')  %>
+<script>
+    const trashCan = document.querySelector('.delete');
+    trashCan.addEventListener('click', (e)=>{
+        const endPoint= `/blogs/${trashCan.dataset.doc}`;
+        fetch(endPoint, {
+            method: 'DELETE',
+        })
+        .then((response)=> response.json())
+        .then((data)=> 
+        {
+                if (data.success) {
+                    // Redirect only if the deletion was successful
+                    window.location.href = '/all-blogs';
+                } else {
+                    console.error('Recipe deletion failed:', data.error);
+                }
+            })
+            .catch((err) => console.error(err));
+    })
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('./partials/header.ejs')  %>
+<body>
+    <%- include('./partials/nav.ejs')  %>
+    <div class="create-blog content">
+        <form action="/blogs" method="post">
+            <label for="title">Recipe name</label>
+            <input type="text" id="title" name="title" required>
+            <label for="snippet">Time to prepare</label>
+            <input type="text" id="snippet" name="timeToPrepare" required>
+            <label for="snippet" >Ingredients</label>
+            <input type="text" id="snippet" name="ingredients" required>
+            <label for="body"> Steps tp prepare</label>
+            <textarea id="body" name="listOfSteps" required></textarea>
+        <button>Submit</button>
+        </form>
+    </div>
+</body>
+<%- include('./partials/footer.ejs')  %>
+</html>

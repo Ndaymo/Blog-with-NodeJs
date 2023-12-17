@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+    <%- include('./partials/header.ejs')  %>
+<body>
+    <%- include('./partials/nav.ejs')  %>
+    
+    <div class="blogs content">
+        <h2>All blogs</h2>
+        <% if (recipes.length > 0) { %>
+            <% recipes.forEach(recipe => { %>
+              <a class="single" href="/blogs/<%= recipe._id %>">  
+                <h3 class="title"> <%= recipe.title %> </h3>
+                <p class="snippet"> <%= recipe.ingredients %> </p>
+                <p class="snippet"> <%= recipe.timeToPrepare %> </p>
+                <p class="snippet"> <%= recipe.listOfSteps %> </p>
+            </a>
+                <% }) %>
+        <% } else { %> 
+            <p>No blogs yet</p>
+            <% } %>
+    </div>
+</body>
+<%- include('./partials/footer.ejs')  %>
+</html>

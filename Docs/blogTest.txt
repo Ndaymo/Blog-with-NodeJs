@@ -1,1 +1,59 @@
 You are amazing
+
+<% if (blogs.length > 0) { %>
+            <% blogs.forEach(blog => { %>
+                <h3 class="title"> <%= blog.title %> </h3>
+                <p class="snippet"> <%= blog.snippet %> </p>
+            <% }) %>
+        <% } %> 
+
+
+
+  const blogs= [
+        {title:"Javascript isn't that scary", snippet:"Lorem ipsum dolor sit amet tomates concassés"},
+        {title:"Making new friends", snippet:"Lorem ipsum dolor sit amet tomates concassés"},
+        {title:"I forgot my train tickets", snippet:"Lorem ipsum dolor sit amet tomates concassés"},
+    ];
+
+
+    Below is a sample of how to get data from a uri request but at the same time update
+    the database using the save method. This save is powered
+    by a mongodb framework called Mongoose:
+    (Deleted it from app.js)
+
+    //mongoose and mongo db sandobox routes
+app.get('/add-blog',(req,res)=>{
+const blog = new Recipe({
+    name: "Pilau Rice",
+    listOfSteps:'[one, two, skip and dip]',
+    ingredients: '{rice, cardamom, salt}',
+    timeToPrepare: '45 min'
+})
+blog.save()
+.then((result)=>{
+    res.send(result)
+})
+.catch((err)=>{
+    console.log(err)
+})
+})
+
+app.get('/all-blogs', (req,res)=>{
+    Recipe.find()
+    .then((result) => {
+        res.send(result)
+    }) 
+    .catch((err)=>{
+        console.log(err);
+    });
+});
+
+app.get('/recipe-one', (req,res)=>{
+    Recipe.findById('657b6718289da35f9d168340')
+    .then((result) => {
+        res.send(result)
+    }) 
+    .catch((err)=>{
+        console.log(err);
+    });
+});
