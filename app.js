@@ -6,8 +6,7 @@ const app=express();
 const mongoose = require('mongoose');
 const path = require('path');
 const morgan = require('morgan');
-const Recipe= require('./models/blog');
-
+const blogRoutes = require('./routing/blogRoutes.js')
 
 
 app.set('view engine', 'ejs');
@@ -26,6 +25,8 @@ app.use(express.urlencoded({extended:true}))
 app.use(express.static('public'));
 
 //Blog routes
+app.use(blogRoutes);
+
 
 app.get("/", (req,res) =>{
 

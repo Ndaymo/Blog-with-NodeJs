@@ -1,5 +1,9 @@
+const express = require('express');
+const routing= express.Router();
+const Recipe= require('./recipes.js');
 
-app.get('/all-blogs', (req, res) => {
+
+routing.get('/all-blogs', (req, res) => {
     Recipe.find().sort({createdAt:-1})
     .then((result)=>{
 res.render('index', {title:'Home', recipes:result})
@@ -9,7 +13,7 @@ res.render('index', {title:'Home', recipes:result})
     
 });
 
-app.post('/blogs',(req,res)=>{
+routing.post('/blogs',(req,res)=>{
     const blog = new Recipe(req.body)
     blog.save()
     .then((result) => {
@@ -21,14 +25,14 @@ app.post('/blogs',(req,res)=>{
 
 
 
-app.get("/blogs/create", (req,res) =>{
+routing.get("/blogs/create", (req,res) =>{
    
     res.render('create', {title:'New Blog'});
 });
 
 //dishes by Id 
 
-app.get('/blogs/:id', (req,res)=>{
+routing.get('/blogs/:id', (req,res)=>{
     const id= req.params.id;
     Recipe.findById(id)
     .then((result)=>{
@@ -40,7 +44,7 @@ app.get('/blogs/:id', (req,res)=>{
   });
 
 //delete a dish blog by Id 
-app.delete('/blogs/:id', (req,res) => {
+routing.delete('/blogs/:id', (req,res) => {
     const id = req.params.id;
     Recipe.findByIdAndDelete(id)
     .then(recipe => {
@@ -61,3 +65,5 @@ app.delete('/blogs/:id', (req,res) => {
         console.log(err);
     })
 })
+
+module.exports= routing;
