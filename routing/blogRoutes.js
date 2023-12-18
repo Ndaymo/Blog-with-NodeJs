@@ -1,6 +1,7 @@
 const express = require('express');
 const routing= express.Router();
-const Recipe= require('./recipes.js');
+const Recipe= require('./models/blog.js');
+const recipes = require('./recipes.js')
 
 
 routing.get('/all-blogs', (req, res) => {

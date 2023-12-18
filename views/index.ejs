@@ -5,7 +5,7 @@
     <%- include('./partials/nav.ejs')  %>
     
     <div class="blogs content">
-        <h2>All blogs</h2>
+        <h2>All recipes</h2>
         <% if (recipes.length > 0) { %>
             <% recipes.forEach(recipe => { %>
               <a class="single" href="/blogs/<%= recipe._id %>">  
